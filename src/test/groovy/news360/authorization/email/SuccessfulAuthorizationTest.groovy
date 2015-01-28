@@ -1,6 +1,6 @@
 package news360.authorization.email
-
 import com.codeborne.selenide.Configuration
+import com.codeborne.selenide.WebDriverRunner
 import news360.Config
 import news360.pageobject.AuthByEmailPage
 import news360.pageobject.MainPage
@@ -30,6 +30,14 @@ class SuccessfulAuthorizationTest extends Specification {
             Object page = auth.signIn()
         then: "Check that login is successful"
             page instanceof NewsPage
+
+        expect: "Check that news page is open"
+            NewsPage news = page as NewsPage
+            news.opened
+    }
+
+    def cleanup() {
+        WebDriverRunner.closeWebDriver()
     }
 
 }

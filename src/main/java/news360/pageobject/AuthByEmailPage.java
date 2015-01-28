@@ -26,8 +26,9 @@ public class AuthByEmailPage extends Page {
         return this;
     }
 
-    public Object signIn() {
+    public Object signIn() throws InterruptedException {
         $(By.cssSelector(SIGN_IN)).shouldBe("'Sign in' button must be displayed", visible).click();
+        Thread.sleep(500);
         if(!authorizationErrorIsDisplayed()) return new NewsPage();
         else return this;
     }
@@ -41,6 +42,10 @@ public class AuthByEmailPage extends Page {
 
     public boolean authorizationErrorIsDisplayed() {
         return $(By.cssSelector(ERROR)).isDisplayed();
+    }
+
+    public boolean checkRequiredFieldIsBlank() {
+        return $(".required").isDisplayed();
     }
 
 }

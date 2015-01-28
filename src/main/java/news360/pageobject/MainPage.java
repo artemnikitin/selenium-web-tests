@@ -1,6 +1,7 @@
 package news360.pageobject;
 
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import news360.Config;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -9,7 +10,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class MainPage extends Page {
 
     public MainPage(){
-        Selenide.open(Config.getBaseUrl());
+        if(WebDriverRunner.url().equals(Config.getBaseUrl())) Selenide.refresh();
+        else Selenide.open(Config.getBaseUrl());
     }
 
     public AuthByEmailPage goToEmailAuth() {
