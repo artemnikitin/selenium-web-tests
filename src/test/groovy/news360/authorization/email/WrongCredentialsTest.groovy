@@ -26,7 +26,7 @@ class WrongCredentialsTest extends Specification {
             auth.setEmail(Config.invalidUserEmail)
                 .setPassword(Config.invalidUserPassword)
             auth.signIn()
-        then: "Check that login is successful"
+        then: "Check that login attempt is failed"
             auth.authorizationErrorIsDisplayed()
     }
 
