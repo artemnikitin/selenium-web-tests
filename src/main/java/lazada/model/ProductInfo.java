@@ -30,4 +30,12 @@ public class ProductInfo {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "ProductInfo{" +
+                "productTitle='" + productTitle + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                '}';
+    }
+
 }
