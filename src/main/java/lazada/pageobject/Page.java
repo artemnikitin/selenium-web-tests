@@ -1,4 +1,4 @@
-package news360.pageobject;
+package lazada.pageobject;
 
 public abstract class Page {
 
