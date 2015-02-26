@@ -43,7 +43,7 @@ public class CartForm extends Page {
     }
 
     @Override
-    public boolean isOpened() throws InterruptedException {
+    public boolean isOpened() {
         return $(".submit_btn.mtssel-cart-checkout-button").isDisplayed();
     }
 
