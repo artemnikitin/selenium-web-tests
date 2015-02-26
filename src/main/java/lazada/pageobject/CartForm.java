@@ -38,7 +38,7 @@ public class CartForm extends Page {
 
     public CartForm changeProductQty(int position, String qty) throws InterruptedException {
         $$(".width_10.price.center>select").get(position).selectOption(qty);
-        Thread.sleep(1500);
+        Thread.sleep(1500);// FIXME
         return this;
     }
 
