@@ -14,12 +14,9 @@ public class ProductInfo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ProductInfo that = (ProductInfo) o;
-
         if (!productPrice.equals(that.productPrice)) return false;
         if (!productTitle.equals(that.productTitle)) return false;
-
         return true;
     }
 

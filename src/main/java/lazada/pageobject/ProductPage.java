@@ -17,14 +17,6 @@ public class ProductPage extends Page {
         return new CartForm();
     }
 
-    public String getProductTitle() {
-        return $("#prod_title").innerText();
-    }
-
-    public String getProductPrice() {
-        return $("#special_price_box").innerText();
-    }
-
     public ProductInfo getProductInfo() {
         return new ProductInfo($("#prod_title").innerText(), $("#special_price_box").innerText());
     }
