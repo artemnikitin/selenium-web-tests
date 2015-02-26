@@ -38,12 +38,12 @@ public class CartForm extends Page {
 
     public CartForm changeProductQty(int position, String qty) throws InterruptedException {
         $$(".width_10.price.center>select").get(position).selectOption(qty);
-        Thread.sleep(1500);// FIXME
+        Thread.sleep(5000);// FIXME
         return this;
     }
 
     @Override
-    public boolean isOpened() {
+    public boolean isOpened() throws InterruptedException {
         return $(".submit_btn.mtssel-cart-checkout-button").isDisplayed();
     }
 

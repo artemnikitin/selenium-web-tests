@@ -2,6 +2,6 @@ package lazada.pageobject;
 
 public abstract class Page {
 
-    public abstract boolean isOpened();
+    public abstract boolean isOpened() throws InterruptedException;
 
 }
