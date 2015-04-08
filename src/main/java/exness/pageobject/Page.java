@@ -1,4 +1,4 @@
-package lazada.pageobject;
+package exness.pageobject;
 
 public abstract class Page {
 
