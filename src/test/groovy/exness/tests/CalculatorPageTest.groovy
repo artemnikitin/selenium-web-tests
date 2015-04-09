@@ -10,12 +10,12 @@ class CalculatorPageTest extends Specification {
             CalculatorPage page = new CalculatorPage()
 
         when: "Choose data and calculate result"
-            page.chooseAccountType()
-                .chooseExchange()
-                .chooseContract()
+            page.chooseAccountType("Common")
+                .chooseExchange("Forex - Foreign Exchange")
+                .chooseContract("AUDGBP")
                 .setLot("11")
-                .chooseLeverage()
-                .chooseCcy()
+                .chooseLeverage("1:400")
+                .chooseCcy("AUD - Австралийский доллар")
                 .calculate()
         then: "Check that result is displayed"
             page.checkCalculatedResults()

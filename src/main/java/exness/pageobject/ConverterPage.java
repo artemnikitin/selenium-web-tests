@@ -47,14 +47,15 @@ public class ConverterPage extends Page {
     }
 
     public ConverterPage setCcyValue(String sum) {
+        $("*[ng-model='sourceAmount']").click();
         $("*[ng-model='sourceAmount']").setValue(sum);
         return this;
     }
 
     public double calculate() {
         $(".ui-btn.ui-btn__middle.md-hidden").click();
-        //return Double.parseDouble($("*[ng-model='targetAmount']").getText());
-        return 1;
+        $("*[ng-model='targetAmount']").click();
+        return Double.parseDouble($("*[ng-model='targetAmount']").getAttribute("value"));
     }
 
     public ConverterPage clean() {
@@ -63,10 +64,18 @@ public class ConverterPage extends Page {
     }
 
     public boolean checkThatFormIsCleaned() {
-        //double source = Double.parseDouble($("*[ng-model='sourceAmount']").getText());
-        //double target = Double.parseDouble($("*[ng-model='targetAmount']").getText());
-        //return source == 0 && target == 0;
-        return true;
+        double source, target;
+        try {
+            source = Double.parseDouble($("*[ng-model='sourceAmount']").getAttribute("value"));
+        } catch (NumberFormatException e) {
+            source = 0;
+        }
+        try {
+            target = Double.parseDouble($("*[ng-model='targetAmount']").getAttribute("value"));
+        } catch (NumberFormatException e) {
+            target = 0;
+        }
+        return source == 0 && target == 0;
     }
 
     @Override
