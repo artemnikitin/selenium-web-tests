@@ -1,13 +1,14 @@
-package exness;
+package exness.model;
 
-public enum Sections {
+public enum Currency {
 
-    CONVERTER("converter"),
-    CALCULATOR("calculator");
+    USD("USD"),
+    EUR("EUR"),
+    CHF("CHF");
 
     private final String type;
 
-    Sections(String type) {
+    Currency(String type) {
         this.type = type;
     }
 

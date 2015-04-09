@@ -1,6 +1,7 @@
 package exness;
 
 import com.typesafe.config.ConfigFactory;
+import exness.model.Sections;
 
 import java.io.File;
 

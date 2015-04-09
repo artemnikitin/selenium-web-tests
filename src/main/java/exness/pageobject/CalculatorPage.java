@@ -1,11 +1,10 @@
 package exness.pageobject;
 
 import exness.Config;
-import exness.Sections;
+import exness.model.Currency;
+import exness.model.Sections;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CalculatorPage extends Page {
 
@@ -14,39 +13,38 @@ public class CalculatorPage extends Page {
         isOpened();
     }
 
-    public CalculatorPage chooseAccountType(String type) {
+    public CalculatorPage chooseAccountType(Account account) {
         $$(".ui-select.ng-scope").get(0).click();
-        selectElementFromList(type);
+        $(".ui-selectItem.ng-scope[data-value='" + account.type + "']").click();
         return this;
     }
 
-    public CalculatorPage chooseExchange(String exchange) {
+    public CalculatorPage chooseExchange(Exchange exchange) {
         $$(".ui-select.ng-scope").get(1).click();
-        selectElementFromList(exchange);
+        $(".ui-selectItem.ng-scope[data-value='" + exchange.type + "']").click();
         return this;
     }
 
-    public CalculatorPage chooseContract(String contract) {
+    public CalculatorPage chooseContract(CurrencyPair contract) {
         $$(".ui-select.ng-scope").get(2).click();
-        selectElementFromList(contract);
+        $(".ui-selectItem.ng-scope[data-value='" + contract.type + "']").click();
         return this;
     }
 
     public CalculatorPage setLot(String lot) {
-        $("#id_Lot").clear();
         $("#id_Lot").setValue(lot);
         return this;
     }
 
-    public CalculatorPage chooseLeverage(String leverage) {
+    public CalculatorPage chooseLeverage(Leverage leverage) {
         $$(".ui-select.ng-scope").get(3).click();
-        selectElementFromList(leverage);
+        $(".ui-selectItem.ng-scope[data-value='" + leverage.type + "']").click();
         return this;
     }
 
-    public CalculatorPage chooseCcy(String ccy) {
+    public CalculatorPage chooseCcy(Currency ccy) {
         $$(".ui-select.ng-scope").get(4).click();
-        selectElementFromList(ccy);
+        $(".ui-selectItem.ng-scope[data-value='" + ccy.getType() + "']").click();
         return this;
     }
 
@@ -64,11 +62,48 @@ public class CalculatorPage extends Page {
         return $(".col.calc-colResult.calc-colResult__prepareState").isDisplayed();
     }
 
-    private void selectElementFromList(String elementText) {
-       $$(".ui-selectItem.ng-scope").forEach(element -> {
-           if (element.getText().equals(elementText))
-               element.click();
-       });
+    public enum Exchange {
+        FOREX("Forex"),
+        NYMEX("NYMEX");
+
+        private final String type;
+
+        Exchange(String type) {
+            this.type = type;
+        }
+    }
+
+    public enum Leverage {
+        HUNDRED("100"),
+        TWO_HUNDRED("200");
+
+        private final String type;
+
+        Leverage(String type) {
+            this.type = type;
+        }
+    }
+
+    public enum Account {
+        COMMON("common"),
+        CENT("cent");
+
+        private final String type;
+
+        Account(String type) {
+            this.type = type;
+        }
+    }
+
+    public enum CurrencyPair {
+        EURUSD("EURUSD");
+
+        private final String type;
+
+        CurrencyPair(String type) {
+            this.type = type;
+        }
     }
 
 }
+

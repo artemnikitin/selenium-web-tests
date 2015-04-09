@@ -1,5 +1,6 @@
 package exness.tests
-import exness.Currency
+
+import exness.model.Currency
 import exness.pageobject.ConverterPage
 import spock.lang.Specification
 

@@ -1,11 +1,12 @@
 package exness.pageobject;
 
 import exness.Config;
-import exness.Currency;
-import exness.Sections;
+import exness.model.Currency;
+import exness.model.Sections;
+import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class ConverterPage extends Page {
 
@@ -16,25 +17,25 @@ public class ConverterPage extends Page {
 
     public ConverterPage chooseCcyFromPopularForSource(Currency ccy) {
         $("*[ng-model='sourceAmount']").click();
-        iterateThroughCollectionAndClick(".converter-popularItem", ccy.getType());
+        $(By.xpath("//li[@class='converter-popularItem' and text()='" + ccy.getType() + "']")).click();
         return this;
     }
 
     public ConverterPage chooseCcyFromPopularForTarget(Currency ccy) {
         $("*[ng-model='targetAmount']").click();
-        iterateThroughCollectionAndClick(".converter-popularItem", ccy.getType());
+        $(By.xpath("//li[@class='converter-popularItem' and text()='" + ccy.getType() + "']")).click();
         return this;
     }
 
     public ConverterPage chooseCcyFromListForSource(Currency ccy) {
         $("*[ng-model='sourceAmount']").click();
-        iterateThroughCollectionAndClick(".converter-currenciesSymbol", ccy.getType());
+        $(By.xpath("//li[@class='converter-currenciesItem']//span[text()='" + ccy.getType() + "']")).click();
         return this;
     }
 
     public ConverterPage chooseCcyFromListForTarget(Currency ccy) {
         $("*[ng-model='targetAmount']").click();
-        iterateThroughCollectionAndClick(".converter-currenciesSymbol", ccy.getType());
+        $(By.xpath("//li[@class='converter-currenciesItem']//span[text()='" + ccy.getType() + "']")).click();
         return this;
     }
 
@@ -83,13 +84,6 @@ public class ConverterPage extends Page {
         boolean tab = $(".ui-sectionsInTabItem.ui-sectionsInTabItem__choosed").isDisplayed();
         boolean text = $(".txt-h3.converter-tabText").isDisplayed();
         return tab && text;
-    }
-
-    private void iterateThroughCollectionAndClick(String path, String text) {
-        $$(path).forEach(element -> {
-            if (element.has(text(text)))
-                element.click();
-        });
     }
 
 }
