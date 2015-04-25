@@ -4,15 +4,20 @@ import com.codeborne.selenide.WebDriverRunner
 import com.wimdu.pageobject.PersonalPage
 import com.wimdu.pageobject.RegistrationPage
 import com.wimdu.utility.RandomGeneration
+import spock.lang.Shared
 import spock.lang.Specification
 
 
 class RegistrationTest extends Specification {
 
+    @Shared RegistrationPage page
+
+    def setup() {
+        page = new RegistrationPage()
+    }
+
     def "Successful registration" () {
-        when: "Open registration page"
-            RegistrationPage page = new RegistrationPage()
-        then: "Check that page is opened"
+        expect: "Check that registration page is opened"
             page.opened
 
         when: "Enter data and submit form"
@@ -26,9 +31,7 @@ class RegistrationTest extends Specification {
     }
 
     def "Unsuccessful registration" () {
-        when: "Open registration page"
-            RegistrationPage page = new RegistrationPage()
-        then: "Check that page is opened"
+        expect: "Check that registration page is opened"
             page.opened
 
         when: "Enter incorrect data and submit form"

@@ -5,14 +5,19 @@ import com.wimdu.Config
 import com.wimdu.pageobject.LoginPage
 import com.wimdu.pageobject.PersonalPage
 import com.wimdu.utility.RandomGeneration
+import spock.lang.Shared
 import spock.lang.Specification
 
 class LoginTest extends Specification {
 
+    @Shared LoginPage page
+
+    def setup() {
+        page = new LoginPage()
+    }
+
     def "Successful login" () {
-        when: "Open login page"
-            LoginPage page = new LoginPage()
-        then: "Check that page is opened"
+        expect: "Check that login page is opened"
             page.opened
 
         when: "Enter login and password and press login button"
@@ -24,9 +29,7 @@ class LoginTest extends Specification {
     }
 
     def "Unsuccessful login" () {
-        when: "Open login page"
-            LoginPage page = new LoginPage()
-        then: "Check that page is opened"
+        expect: "Check that login page is opened"
             page.opened
 
         when: "Enter incorrect login and password and press login button"
