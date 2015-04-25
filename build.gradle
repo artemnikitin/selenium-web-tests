@@ -19,4 +19,5 @@ test {
     testLogging.showStandardStreams = true
     testLogging { events 'passed' }
     systemProperties 'file.encoding': 'UTF-8'
+    systemProperties = System.getProperties()
 }
