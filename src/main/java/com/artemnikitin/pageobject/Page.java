@@ -1,4 +1,4 @@
-package news360.pageobject;
+package com.artemnikitin.pageobject;
 
 public abstract class Page {
 
